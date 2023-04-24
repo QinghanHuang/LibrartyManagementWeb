@@ -1,4 +1,4 @@
-package com.library.servlet;
+package com.library.servlet.auth;
 
 import com.library.service.UserService;
 import com.library.service.impl.UserServiceImpl;
@@ -44,6 +44,9 @@ public class LoginServlet extends HttpServlet {
             //Or it will maintain "login-failure"
             req.getSession().removeAttribute("login-failure");
         }
+        if(req.getSession().getAttribute("user")!=null){
+            resp.sendRedirect("index");
+        }
 
         ThymeleafUtil.process("login.html",context,resp.getWriter());
     }
@@ -60,7 +63,7 @@ public class LoginServlet extends HttpServlet {
         if(service.auth(username,password,req.getSession())){
 
             // condition login success
-            resp.getWriter().write("Login Success");
+            resp.sendRedirect("index");
         }else{
 
             //login fail  --> to set an Attribute in Session(like flag) to indicate this session login fail
