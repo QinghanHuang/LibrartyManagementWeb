@@ -4,6 +4,7 @@ import com.library.entity.Book;
 import com.library.entity.Borrow;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BookService {
     List<Borrow> getBorrowList();
@@ -11,5 +12,7 @@ public interface BookService {
     List<Book> getActivateBookList();
     List<Book> getBookList();
     boolean addBorrow(int sid,int bid);
+
+    Map<Book,Boolean> getBookListWithStatus();
 
 }

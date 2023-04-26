@@ -8,7 +8,7 @@ import com.library.util.MybatisUtil;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author Qinghan Huang
@@ -63,6 +63,25 @@ public class BookServiceImpl implements BookService {
             bookMapper = session.getMapper(BookMapper.class);
             return bookMapper.addBorrow(sid, bid);
         }
+    }
+
+    @Override
+    public Map<Book, Boolean> getBookListWithStatus() {
+        HashMap<Book, Boolean> bookMap = new LinkedHashMap<>();
+        List<Book> bookList = getBookList();
+        List<Book> activateBookList = getActivateBookList();
+
+
+        for (Book book : bookList) {
+            boolean isAvailable = false;
+            if (activateBookList.contains(book)) {
+                isAvailable = true;
+            }
+            bookMap.put(book, isAvailable);
+        }
+        return bookMap;
+
+
     }
 
 
