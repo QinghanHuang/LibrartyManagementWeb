@@ -17,6 +17,16 @@ import java.util.*;
  * @Version 1.0
  */
 public class BookServiceImpl implements BookService {
+    private static BookServiceImpl instance = new BookServiceImpl();
+
+    private BookServiceImpl() {
+    }
+
+    public static BookServiceImpl getInstance() {
+        return instance;
+    }
+
+
     @Override
     public List<Borrow> getBorrowList() {
         BookMapper bookMapper;
@@ -29,7 +39,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean returnBook(String id) {
+    public boolean returnBook(int id) {
         BookMapper bookMapper;
         try (SqlSession session = MybatisUtil.getSession()) {
             bookMapper = session.getMapper(BookMapper.class);
@@ -82,6 +92,24 @@ public class BookServiceImpl implements BookService {
         return bookMap;
 
 
+    }
+
+    @Override
+    public boolean deleteBook(int bid) {
+        BookMapper bookMapper;
+        try (SqlSession session = MybatisUtil.getSession()) {
+            bookMapper = session.getMapper(BookMapper.class);
+            return bookMapper.deleteBook(bid);
+        }
+    }
+
+    @Override
+    public boolean addBook(String title, String bookInfo, double price) {
+        BookMapper bookMapper;
+        try (SqlSession session = MybatisUtil.getSession()) {
+            bookMapper = session.getMapper(BookMapper.class);
+            return bookMapper.addBook(title, bookInfo, price);
+        }
     }
 
 

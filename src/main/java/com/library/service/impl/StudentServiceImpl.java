@@ -15,6 +15,14 @@ import java.util.List;
  * @Version 1.0
  */
 public class StudentServiceImpl implements StudentService {
+    private static  StudentServiceImpl instance=new StudentServiceImpl();
+    private StudentServiceImpl() {
+    }
+    public static StudentServiceImpl getInstance(){
+        return instance;
+    }
+
+
     @Override
     public List<Student> getStudents() {
         StudentMapper studentMapper;
@@ -30,6 +38,15 @@ public class StudentServiceImpl implements StudentService {
         try (SqlSession session = MybatisUtil.getSession()) {
             studentMapper = session.getMapper(StudentMapper.class);
             return studentMapper.getStudent(sid);
+        }
+    }
+
+    @Override
+    public boolean deleteStudent(int sid) {
+        StudentMapper studentMapper;
+        try (SqlSession session = MybatisUtil.getSession()) {
+            studentMapper = session.getMapper(StudentMapper.class);
+            return studentMapper.deleteStudent(sid);
         }
     }
 }

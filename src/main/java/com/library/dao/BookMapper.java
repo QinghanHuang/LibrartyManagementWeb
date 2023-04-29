@@ -19,11 +19,13 @@ public interface BookMapper {
     List<Borrow> getBorrowList();
 
     @Delete("delete from borrow where borrow_id = #{id}")
-    boolean returnBook(String id);
+    boolean returnBook(int id);
 
     @Insert("insert into borrow(sid, bid, borrow_date) values(#{sid},#{bid},now())")
     boolean addBorrow(@Param("sid") int sid,@Param("bid")  int bid);
 
+    @Insert("insert into book(title,book_info,price) values(#{title},#{bookInfo},#{price})")
+    boolean addBook(@Param("title") String title,@Param("bookInfo") String bookInfo,@Param("price") double price);
 
     @Results({
             @Result(column = "bid",property = "bid"),
@@ -42,6 +44,9 @@ public interface BookMapper {
     })
     @Select("select book.bid,title,price,book_info from book left join borrow on book.bid = borrow.bid where borrow.bid is null")
     List<Book> getActiveBookList();
+
+    @Delete("delete from book where bid=#{bid}")
+    boolean deleteBook(int bid);
 
 
 

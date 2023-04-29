@@ -7,4 +7,5 @@ import java.util.List;
 public interface StudentService {
     List<Student> getStudents();
     Student getStudent(int sid);
+    boolean deleteStudent(int sid);
 }

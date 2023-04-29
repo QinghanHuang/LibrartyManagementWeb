@@ -24,4 +24,7 @@ public interface StudentMapper {
     })
     @Select("select * from student where sid=#{sid}")
     Student getStudent(int sid);
+
+    @Delete("delete from student where sid=#{sid}")
+    boolean deleteStudent(int sid);
 }

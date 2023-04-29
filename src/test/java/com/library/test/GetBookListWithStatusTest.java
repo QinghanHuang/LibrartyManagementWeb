@@ -15,7 +15,7 @@ import java.util.Map;
 public class GetBookListWithStatusTest {
     @Test
     public void getBookListWithStatusTest(){
-        BookServiceImpl bookService = new BookServiceImpl();
+        BookServiceImpl bookService =BookServiceImpl.getInstance();
         Map<Book, Boolean> bookListWithStatus = bookService.getBookListWithStatus();
         System.out.println(bookListWithStatus);
 

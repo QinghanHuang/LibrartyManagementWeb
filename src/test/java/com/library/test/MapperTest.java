@@ -45,14 +45,14 @@ public class MapperTest {
     }
     @Test
     public void studentServiceTest(){
-        StudentServiceImpl studentService = new StudentServiceImpl();
+        StudentServiceImpl studentService = StudentServiceImpl.getInstance();
         List<Student> students = studentService.getStudents();
         System.out.println(students);
 
     }
     @Test
     public void bookServiceTest(){
-        BookServiceImpl bookService = new BookServiceImpl();
+        BookServiceImpl bookService =BookServiceImpl.getInstance();
         List<Borrow> borrowList = bookService.getBorrowList();
         System.out.println(borrowList);
     }

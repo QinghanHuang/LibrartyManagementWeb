@@ -19,13 +19,9 @@ import java.io.IOException;
  */
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet {
-    BookService bookService;
+    BookService bookService=BookServiceImpl.getInstance();
 
-    //use no args init()
-    @Override
-    public void init() throws ServletException {
-        bookService=new BookServiceImpl();
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

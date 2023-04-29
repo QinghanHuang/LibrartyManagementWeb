@@ -20,12 +20,9 @@ import java.io.IOException;
 @WebServlet("/book")
 public class BookServlet extends HttpServlet {
 
-    BookService bookService;
+    BookService bookService=BookServiceImpl.getInstance();
 
-    @Override
-    public void init() throws ServletException {
-        bookService=new BookServiceImpl();
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
