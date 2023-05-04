@@ -15,10 +15,12 @@ import java.util.List;
  * @Version 1.0
  */
 public class StudentServiceImpl implements StudentService {
-    private static  StudentServiceImpl instance=new StudentServiceImpl();
+    private static StudentServiceImpl instance = new StudentServiceImpl();
+
     private StudentServiceImpl() {
     }
-    public static StudentServiceImpl getInstance(){
+
+    public static StudentServiceImpl getInstance() {
         return instance;
     }
 
@@ -47,6 +49,24 @@ public class StudentServiceImpl implements StudentService {
         try (SqlSession session = MybatisUtil.getSession()) {
             studentMapper = session.getMapper(StudentMapper.class);
             return studentMapper.deleteStudent(sid);
+        }
+    }
+
+    @Override
+    public boolean addStudent(String name, String sex, String grade) {
+        StudentMapper studentMapper;
+        try (SqlSession session = MybatisUtil.getSession()) {
+            studentMapper = session.getMapper(StudentMapper.class);
+            return studentMapper.addStudent(name, sex, grade);
+        }
+    }
+
+    @Override
+    public int countStudent() {
+        StudentMapper studentMapper;
+        try (SqlSession session = MybatisUtil.getSession()) {
+            studentMapper = session.getMapper(StudentMapper.class);
+            return studentMapper.countStudent();
         }
     }
 }

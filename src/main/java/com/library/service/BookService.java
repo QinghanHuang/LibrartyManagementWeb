@@ -17,6 +17,9 @@ public interface BookService {
     boolean deleteBook(int bid);
     boolean addBook(String title,String bookInfo,double price);
 
+    int countBook();
+    int countBorrow();
+
 
 
 }

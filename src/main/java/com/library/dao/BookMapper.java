@@ -48,6 +48,12 @@ public interface BookMapper {
     @Delete("delete from book where bid=#{bid}")
     boolean deleteBook(int bid);
 
+    @Select("select count(*) from borrow")
+    int countBorrow();
+
+    @Select("select count(*) from book")
+    int countBook();
+
 
 
 

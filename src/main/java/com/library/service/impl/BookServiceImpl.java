@@ -112,5 +112,23 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    @Override
+    public int countBook() {
+        BookMapper bookMapper;
+        try (SqlSession session = MybatisUtil.getSession()) {
+            bookMapper = session.getMapper(BookMapper.class);
+            return bookMapper.countBook();
+        }
+    }
+
+    @Override
+    public int countBorrow() {
+        BookMapper bookMapper;
+        try (SqlSession session = MybatisUtil.getSession()) {
+            bookMapper = session.getMapper(BookMapper.class);
+            return bookMapper.countBorrow();
+        }
+    }
+
 
 }

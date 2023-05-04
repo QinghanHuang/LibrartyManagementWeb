@@ -58,9 +58,10 @@ public class MapperTest {
     }
 
     @Test
-    public void addBorrowTest(){
+    public void countTest(){
         SqlSession session = MybatisUtil.getSession();
-        BookMapper bookMapper = session.getMapper(BookMapper.class);
-        bookMapper.addBorrow(23,8);
+        StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+        int s=studentMapper.countStudent();
+        System.out.println(s);
     }
 }

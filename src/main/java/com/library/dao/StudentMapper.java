@@ -27,4 +27,10 @@ public interface StudentMapper {
 
     @Delete("delete from student where sid=#{sid}")
     boolean deleteStudent(int sid);
+
+    @Insert("insert into student(s_name,sex,grade) values(#{name},#{sex},#{grade})")
+    boolean addStudent(@Param("name")String name,@Param("sex")String sex,@Param("grade")String grade);
+
+    @Select("select count(*) from student")
+    int countStudent();
 }
