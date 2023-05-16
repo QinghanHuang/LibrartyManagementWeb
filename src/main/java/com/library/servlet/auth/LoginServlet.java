@@ -19,15 +19,9 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    private UserService service;
-
-    // initial UserService
-    @Override
-    public void init() throws ServletException {
-        service=new UserServiceImpl();
+    private UserService service=UserServiceImpl.getInstance();
 
 
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
